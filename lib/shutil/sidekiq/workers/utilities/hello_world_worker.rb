@@ -1,4 +1,4 @@
-class Utilities::HelloWorldWorker
+class Shutil::Sidekiq::Utilities::HelloWorldWorker
   include Sidekiq::Worker
   include Sidekiq::Status::Worker
 
