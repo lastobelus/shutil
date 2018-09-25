@@ -1,4 +1,4 @@
-require "shutil/railtie"
+require "shutil/engine"
 require 'action_view'
 require 'action_pack'
 
