@@ -1,5 +1,18 @@
 require "shutil/railtie"
+require 'action_view'
+require 'action_pack'
 
 module Shutil
-  # Your code goes here...
+  extend ActiveSupport::Autoload
+
+
+  eager_autoload do
+    autoload :Workers
+  end
+
+  def self.eager_load!
+    super
+    Shutil::Workers.eager_load!
+  end
+
 end
