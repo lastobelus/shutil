@@ -14,14 +14,36 @@ namespace :shutil do
 
     heroku_app = Shutil::Figaro.require_config! smoke_environment, 'HEROKU_APP'
     smoke_shop_id = Shutil::Figaro.require_config! smoke_environment, 'SMOKE_SHOP_ID'
+    api_domain = Shutil::Figaro.require_config! smoke_environment, 'API_DOMAIN'
 
 
     heroku = Shutil::Heroku.new(app: heroku_app)
     results = heroku.run "SMOKE_SHOP_ID=#{smoke_shop_id} rails shutil:smoke_sidekiq"
 
-    match = results.match(/(hello_world_worker_jid:\w+)/)
+    match = results.match(/hello_world_worker_jid:(\w+)/)
     if match
-      puts match[1]
+      jid = match[1]
+
+      url = "https://#{api_domain}/shutil/job_status/#{jid}"
+      puts "url: #{url.inspect}"
+
+      waiting_since = Time.now
+      wait_for = ENV.fetch('SMOKE_TEST_TIMEOUT', 10)
+      loop do
+        sleep 1
+        status = HTTP.get(url).parse
+        pp status
+
+        Shutil::CLI.exit_with_error(
+          "can't find smoketest job #{jid}"
+        ) if status.empty?
+
+        Shutil::CLI.exit_with_error(
+          "smoketest #{jid} incomplete after #{wait_for} seconds"
+        ) if (Time.now - waiting_since > wait_for)
+
+      end
+
     else
       Shutil::CLI.error("no jid in results")
     end

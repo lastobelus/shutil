@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sidekiq-history'
   s.add_dependency 'redis-rails'
 
-  s.add_dependency 'rest-client'
+  s.add_dependency 'http'
 
   s.add_dependency 'figaro'
 
