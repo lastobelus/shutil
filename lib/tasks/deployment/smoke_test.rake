@@ -1,4 +1,5 @@
 require 'shutil/cli'
+require 'http'
 
 namespace :shutil do
   desc "Smoke test for shopify apps. Uses a sidekiq worker to fetch product count, and checks for it in the sidekiq status. Expects"
