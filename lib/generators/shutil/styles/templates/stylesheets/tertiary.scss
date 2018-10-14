@@ -1,0 +1,12 @@
+.btn-outline-tertiary {
+  @include button-outline-variant($tertiary)
+}
+
+.badge-tertiary {
+  @include badge-variant($tertiary)
+}
+
+.bg-tertiary {
+  background-color: $tertiary;
+}
+

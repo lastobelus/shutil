@@ -1,0 +1,20 @@
+= render 'layouts/shopify_app_js', title: "Home"
+
+= render 'layouts/ui_layout' do
+  = render 'layouts/ui_card' do
+    h2 Products
+    ul
+      - @products.each do |product|
+        li
+          = link_to product.title, current_shop.product_link(product.id), target: "_top"
+
+  = render 'layouts/ui_card' do
+    h2 Webhooks
+    - if @webhooks.present?
+      ul
+        - @webhooks.each do |webhook|
+          li
+            = "#{webhook.topic} : #{webhook.address}"
+    - else
+      p This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks
+

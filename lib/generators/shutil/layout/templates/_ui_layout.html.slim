@@ -1,0 +1,5 @@
+.ui-layout__section.ui-layout__section--primary
+  .ui-layout__item
+    - if defined? layout_title
+      h1.ui-title-bar__title= layout_title
+    = yield

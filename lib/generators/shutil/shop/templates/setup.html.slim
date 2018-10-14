@@ -1,0 +1,14 @@
+section.ui-card
+  .ui-card__section
+      .card.card-outline-primary.w-50
+        .card-body.display-4
+          - unless current_shop&.setup?
+            h3.text-muted
+              i.fa.fa-spinner.fa-spin.fa-fw
+              | Setting up #{current_shop.shopify_domain}...
+            javascript:
+              setTimeout(function(){
+                window.location.reload();
+              }, 5000)
+          - else
+            = link_to "Start Using Sp Fulfillment...", root_url, class: "btn btn-outline-primary"

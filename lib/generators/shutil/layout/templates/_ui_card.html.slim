@@ -1,0 +1,7 @@
+body
+  section.ui-card
+    header.ui-card__header
+      - if defined? section_title
+        h3.ui-heading= section_title
+    .ui-card__section
+      = yield

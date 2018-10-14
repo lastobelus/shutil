@@ -1,0 +1,19 @@
+.accordion-header .fa-chevron-down,
+#top-bar-controls button > .fa-chevron-down {
+  transition: all 0.1s ease;
+}
+.accordion-header.collapsed .fa-chevron-down,
+#top-bar-controls button.collapsed > .fa-chevron-down {
+  transform: rotate(-90deg);
+}
+
+
+.spinner.fa-refresh,
+.spinner.fa-spinner {
+  opacity: 0.5;
+}
+
+.spinner {
+  margin-left: 5px;
+  cursor: pointer;
+}

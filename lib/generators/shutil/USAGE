@@ -1,0 +1,8 @@
+Description:
+    Sets up a simplipleasure 
+
+Example:
+    rails generate shutil Thing
+
+    This will create:
+        what/will/it/create

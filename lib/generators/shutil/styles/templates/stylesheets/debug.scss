@@ -1,0 +1,36 @@
+#debug-css-widget {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  opacity: 75%;
+  font-size: 10px;
+  font-family: InputSans, monospace;
+
+  .dimensions {}
+
+  .breakpoint {
+    .xs {
+      background-color: #ffc300
+    }
+
+    .sm {
+      background-color: #ff5733
+    }
+
+    .md {
+      background-color: #c70039
+    }
+
+    .lg {
+      background-color: #9003cf
+    }
+
+    .xl {
+      background-color: #581845
+    }
+
+    font-weight: bold;
+    color: white;
+  }
+}

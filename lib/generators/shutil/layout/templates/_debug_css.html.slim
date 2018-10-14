@@ -1,0 +1,50 @@
+#debug-css-widget
+  span.dimensions
+  span.breakpoint
+
+javascript:
+
+  $( document ).on('turbolinks:load', () => {
+    const $el = $('#debug-css-widget')
+    window.debugCss = {
+      $el,
+      $dimensions: $el.find('.dimensions'),
+      $breakpoint: $el.find('.breakpoint')
+    }
+    updateDimensions()
+
+    $(window).off('resize.debugCss')
+    $(window).on('resize.debugCss', updateDimensions)
+  })
+
+  function updateDimensions() {
+    const width = $( document ).width()
+    const height = $( document ).height()
+    window.debugCss.$dimensions.html(`${width} x ${height}`)
+    let breakpoint
+    let breakpointClass
+    switch (true) {
+    case width < 576:
+      breakpointClass = "xs"
+      breakpoint = "xs (<576)"
+      break;
+    case width < 768:
+      breakpointClass = "sm"
+      breakpoint = "sm (576-768)"
+      break;
+    case width < 992:
+      breakpointClass = "md"
+      breakpoint = "md (768-992)"
+      break;
+    case width < 1200:
+      breakpointClass = "lg"
+      breakpoint = "lg (992-1200)"
+      break;
+    case width > 1200:
+      breakpointClass = "xl"
+      breakpoint = "xl (1200+)"
+      break;
+    }
+
+    window.debugCss.$breakpoint.html(`<span class="${breakpointClass}">${breakpoint}</span>`)
+  }

@@ -1,0 +1,106 @@
+legend {
+  font-size: $h3-font-size;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.custom-checkbox {
+
+  label{
+    margin: 0;
+    padding: 0;
+  }
+
+  input[type=checkbox] { display:none; }
+  input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size: 30px;
+    line-height: 1;
+    color: $gray-a-little-lighter;
+    text-shadow:  0 0 2px rgba(255,255,255, 0.5);
+  }
+
+  &.deal-published-switch {
+    input[type=checkbox] + label:before {
+      font-size: 32px;
+    }
+  }
+
+  input[type=checkbox] + label:before {
+    content: "\f204";
+  }
+
+  input[type=checkbox]:checked + label:before {
+    content: "\f205";
+    color: $primary;
+  }
+
+
+  input[type=checkbox] + label.prominent {
+    color: $text-more-muted;
+    font-weight: bold;
+    font-size: 24px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  input[type=checkbox]:checked + label.prominent {
+    color: $primary;
+  }
+}
+
+.bg-danger .custom-checkbox {
+  input[type=checkbox] + label:before {
+    color: lighten($gray, 10%);
+    text-shadow: none;
+  }
+  input[type=checkbox]:checked + label:before {
+    color: darken($primary, 10%);
+  }
+}
+
+.bg-tertiary .custom-checkbox {
+  input[type=checkbox] + label:before {
+    color: desaturate(darken($tertiary, 5%), 20%);
+    text-shadow: none;
+  }
+  input[type=checkbox]:checked + label:before {
+    color: desaturate(lighten($tertiary, 15%), 20%);
+  }
+}
+
+tbody.top-space::before
+{
+    content: '';
+    display: table-row;
+    height: 15px;
+}
+
+tr.spacer-row td {
+  height: 15px;
+}
+
+.card-header ul.nav-pills {
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.card-header h4 {
+  margin: 0;
+}
+
+.jq-toggle {
+  margin-top: 2px;
+  margin-bottom: 1px;
+}
+
+label.label-muted-xs {
+  color: $gray-a-little-lighter;
+  font-weight: bold;
+  font-size: 0.6em;
+  margin: 0;
+}
+
+.input-line-height {
+  line-height: 35px;
+}

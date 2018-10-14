@@ -1,0 +1,12 @@
+= render 'layouts/shopify_app_js', title: "Preferences"
+
+= render 'layouts/ui_layout' do
+  section.ui-card
+    .ui-card__section
+      h2.ui-heading Preferences
+      .row
+        .col-lg-8
+          = bootstrap_form_for(@preferences, url: preferences_path, layout: :horizontal, label_col: 'col-md-4', control_col: 'col-md-8') do |f|
+            = f.text_field :example_preference, help: "An example of a preference."
+            .row
+              .col.text-right= f.submit "Update Preferences", class: "btn text-normal btn-outline-primary"

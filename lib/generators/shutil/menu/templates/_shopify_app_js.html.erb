@@ -1,0 +1,70 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({
+        title: "<%= title %>",
+        icon: "<%= asset_path('favicon.ico') %>",
+        <% if defined? breadcrumb %>
+          breadcrumb: {
+            label: "<%= breadcrumb %>",
+            href: "<%= breadcrumb_link %>",
+            target: 'app',
+            loading: false
+          },
+        <% end %>
+        <% if defined? pagination %>
+          pagination: {
+            next: {
+              <% if pagination[:next] %>
+                href: "<%= pagination[:next] %>"
+              <% else %>
+                callback: function(){ alert('no next pages') },
+                loading: false
+              <% end %>
+            },
+            previous: {
+              <% if pagination[:previous] %>
+                href: "<%= pagination[:previous] %>"
+              <% else %>
+                callback: function(){ alert('no previous pages') },
+                loading: false
+              <% end %>
+            },
+          },
+        <% end %>
+
+        buttons: {
+          secondary: [
+            {
+              label: "Preferences",
+              type: "dropdown",
+              links: [
+                {
+                  label: "Home",
+                  target: "app",
+                  href: "<%= home_path %>"
+                },
+                {
+                  label: "<%= ShopifyApp.configuration.application_name %> Settings",
+                  target: "app",
+                  href: "<%= edit_preferences_path %>"
+                }
+              ]
+            },
+            {
+              label: "<%= ShopifyApp.configuration.application_name %>",
+              type: "dropdown",
+              links: [
+                {
+                  label: "Example",
+                  target: "app",
+                  href: "<%= root_path %>"
+                },
+              ]
+            }
+          ]
+        }
+      })
+    })
+  </script>
+<% end %>
