@@ -1,0 +1,22 @@
+= render 'layouts/shopify_app_js', title: "CSV Imports"
+
+= render 'layouts/ui_layout' do
+
+  .ui-major-section
+    h1.ui-major-section__header
+      | Imports
+    ul.nav.nav-tabs[role="tablist"]
+      li.nav-item
+        a.nav-link.active[data-toggle="tab" href="#import_example_section" role="tab"]
+          | Example Import Type
+    .tab-content
+      #import_example_section.tab-pane.ui-card__tab-content.active[role="tabpanel"]
+        section.ui-card.ui-card__tab-content.mt-0
+          .ui-card__section
+            h2.ui-heading
+              | Import Example
+            .row.row-grid
+              .col-md-5
+                = render 'csv_imports/form', processor: "ExampleImportWorker", return_anchor: 'import_example_section', file_description: "Upload an xlsx or csv file with the headers: ColumnOne, ColumnTwo"
+              .col-md-7
+                = render 'csv_imports/last', processor: "ExampleImportWorker", title: "Example"

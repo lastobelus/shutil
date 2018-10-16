@@ -1,0 +1,20 @@
+- csv_import = last_csv_import(processor)
+.card
+  .card-header Last Import
+  .card-body
+    - if csv_import
+      dl.row
+        dt.col-sm-3 Uploaded:
+        dd.col-sm-9= csv_import.created_at.pacific.to_s(:long)
+        dt.col-sm-3 State:
+        dd class=("col-sm-9 #{csv_import_state_bg(csv_import)}") = csv_import.state
+        dt.col-sm-3 Time:
+        dd.col-sm-9= distance_of_time_in_words(csv_import.finished_processing_at - csv_import.started_processing_at) rescue ""
+        dt.col-sm-3 Info:
+        dd.col-sm-9= csv_import.info
+    - else
+      .alert.alert-warning role="alert" 
+        | No
+        strong= title
+        | imports yet.
+

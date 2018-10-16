@@ -1,6 +1,7 @@
 require "shutil/engine"
 require "action_view"
 require "action_pack"
+require "shutil/configuration"
 
 module Shutil
   extend ActiveSupport::Autoload
@@ -15,10 +16,11 @@ module Shutil
       Shutil::Workers.eager_load!
     end
 
-    attr_reader :config
+    def config
+      @config ||= Configuration.new
+    end
 
     def configure
-      @config = Configuration.new
       yield config
     end
   end

@@ -1,0 +1,15 @@
+= form_for(CsvImport.new(processor: processor.to_s)) do |f|
+  = hidden_field_tag :return_anchor, return_anchor
+  .ui-card__section__small
+    = f.hidden_field :processor
+    .form-group
+      .input-group
+        label.input-group-btn.mb-0
+          span.btn.btn-outline-primary.text-normal
+            | Excel File
+            = f.file_field :file, class: "form-control-file", 'aria-describedby': 'fileHelp', hidden: true
+        input.form-control readonly="readonly" type="text" /
+      small#fileHelp.form-text.text-muted= file_description
+    .actions.text-right
+      = f.submit class: "btn btn-outline-primary"
+
