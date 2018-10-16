@@ -15,8 +15,7 @@ module Shutil
         generate "shutil:styles"
         generate "shutil:layout"
         generate "shutil:menu"
-
-        generate "webpacker:install:erb"
+        generate "shutil:javascript"
       end
     end
   end
