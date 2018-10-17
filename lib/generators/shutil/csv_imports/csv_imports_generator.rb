@@ -17,7 +17,7 @@ class Shutil::CsvImportsGenerator < Rails::Generators::Base
 
   def add_menu
     directory "menus/app/items", "app/views/layouts/menus/app/items"
-    append_to_file "app/views/layouts/menus/app/_menu_items.js.erb" do
+    append_to_file "app/views/layouts/menus/app/_menu_items.html.erb" do
       "<%= render 'layouts/menus/app/items/csv_imports' %>"
     end
   end
