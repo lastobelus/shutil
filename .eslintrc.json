@@ -1,4 +1,10 @@
 {
+    "env": {
+        "browser": true
+    },
+    "globals": {
+        "$": true
+    },
     "extends": "airbnb-base",
     "rules": {
         "no-console": 0

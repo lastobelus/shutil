@@ -39,27 +39,14 @@
               label: "Preferences",
               type: "dropdown",
               links: [
-                {
-                  label: "Home",
-                  target: "app",
-                  href: "<%= home_path %>"
-                },
-                {
-                  label: "<%= ShopifyApp.configuration.application_name %> Settings",
-                  target: "app",
-                  href: "<%= edit_preferences_path %>"
-                }
+                <%= render 'layouts/menus/preferences/menu_items' %>
               ]
             },
             {
               label: "<%= ShopifyApp.configuration.application_name %>",
               type: "dropdown",
               links: [
-                {
-                  label: "Example",
-                  target: "app",
-                  href: "<%= root_path %>"
-                },
+                <%= render 'layouts/menus/app/menu_items' %>
               ]
             }
           ]

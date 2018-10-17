@@ -14,4 +14,11 @@ class Shutil::CsvImportsGenerator < Rails::Generators::Base
     route "resources :csv_imports, only: [:index, :create, :show]"
     insert_into_file "app/models/shop.rb", "\n  has_many :csv_imports\n", after: "include Shops::AdminLinks\n"
   end
+
+  def add_menu
+    directory "menus/app/items", "app/views/layouts/menus/app/items"
+    append_to_file "app/views/layouts/menus/app/_menu_items.js.erb" do
+      "<%= render 'layouts/menus/app/items/csv_imports' %>"
+    end
+  end
 end

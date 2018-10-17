@@ -5,6 +5,7 @@ module Shutil
 
       def shopify_menu
         copy_file "_shopify_app_js.html.erb", "app/views/layouts/_shopify_app_js.html.erb"
+        directory "menus", "app/views/layouts/menus"
       end
     end
   end
