@@ -8,12 +8,14 @@ module Shutil
 
   eager_autoload do
     autoload :Workers
+    autoload :ShopifyExtensions
   end
 
   class << self
     def eager_load!
       super
       Shutil::Workers.eager_load!
+      Shutil::ShopifyExtensions.eager_load!
     end
 
     def config

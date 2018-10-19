@@ -1,0 +1,40 @@
+class <%= migration_class_name %> < ActiveRecord::Migration[5.1]
+  def change
+    create_table :<%= plural_table_name %>, id: false do |t|
+      t.bigint :id
+<% if caches_data? -%>
+      t.jsonb :shopify_data
+<% end -%>
+      t.references :shop, foreign_key: true
+<% if parent_object.present? -%>
+      t.references <%= parent_object.to_sym.inspect %>, foreign_key: true
+<% end -%>
+
+
+<% attributes.each do |attribute| -%>
+<% if attribute.token? -%>
+      t.string :<%= attribute.name %><%= attribute.inject_options %>
+<% else -%>
+      t.<%= attribute.type %> :<%= attribute.name %><%= attribute.inject_options %>
+<% end -%>
+<% end -%>
+      t.timestamp :shopify_data_fetched_at
+
+      t.timestamps
+    end
+
+<% attributes.select(&:token?).each do |attribute| -%>
+    add_index :<%= table_name %>, :<%= attribute.index_name %><%= attribute.inject_index_options %>, unique: true
+<% end -%>
+<% attributes_with_index.each do |attribute| -%>
+    add_index :<%= table_name %>, :<%= attribute.index_name %><%= attribute.inject_index_options %>
+<% end -%>
+    add_index :<%= table_name %>, :id, unique: true
+
+    reversible do |change| 
+      change.up do
+        execute %Q{ ALTER TABLE "<%= plural_table_name %>" ADD PRIMARY KEY ("id"); }
+      end
+    end
+  end
+end

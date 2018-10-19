@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate csv_exporter Thing
+
+    This will create:
+        what/will/it/create

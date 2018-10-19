@@ -7,6 +7,7 @@ PATH
       figaro
       http
       jsonb_accessor
+      postgresql_cursor
       rack-timeout
       rails (>= 5.1)
       redis-rails
@@ -85,7 +86,7 @@ GEM
       thor (~> 0.14)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    http (3.3.0)
+    http (4.0.0)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
       http-form_data (~> 2.0)
@@ -119,6 +120,8 @@ GEM
       mini_portile2 (~> 2.3.0)
     numerizer (0.1.1)
     pg (1.1.3)
+    postgresql_cursor (0.6.2)
+      activerecord (>= 3.1.0)
     public_suffix (3.0.3)
     rack (2.0.5)
     rack-protection (2.0.4)

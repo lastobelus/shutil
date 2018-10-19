@@ -40,7 +40,8 @@ Gem::Specification.new do |s|
   s.add_dependency "attr_extras"
   # Settings in json column
   s.add_dependency "jsonb_accessor"
-
+  s.add_dependency "postgresql_cursor"
+  
   ############################################################################
   # Deployment
   ############################################################################

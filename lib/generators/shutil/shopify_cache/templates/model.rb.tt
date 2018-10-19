@@ -1,0 +1,20 @@
+class <%= class_name %> < Shutil::ShopifyExtensions::ObjectCache
+  self.table_name = <%= table_name.inspect %>
+<% if caches_data? -%>
+  cache_data true
+<% end -%>
+<% if caches_children.present? -%>
+  cache_children <%= caches_children.map(&:to_sym).map(&:inspect).join(', ') %>
+<% caches_children.map(&:to_s).each do |child| -%>
+  has_many :shopify_<%= child %>, inverse_of: :<%= singular_name %>, dependent: :destroy 
+<% end -%>
+<% end -%>
+
+  cache_attributes <%= attributes_names.map(&:to_sym).map(&:inspect).join(",") %>
+
+<% if parent_object.present? -%>
+  belongs_to <%= parent_object.to_sym.inspect %>, inverse_of: <%= plural_name.to_sym.inspect %>
+<% end -%>
+
+  belongs_to :shop
+end

@@ -3,6 +3,7 @@ module Shutil
     isolate_namespace Shutil
 
     config.to_prepare do
+      ShopifyAPI::Base.extend(Shutil::ShopifyExtensions::Stream)
       if Shutil.config
         # Example of adding an association to app class
         # Shutil.config.user_class.constantize.class_eval do
