@@ -1,0 +1,25 @@
+require 'csv_builder'
+
+module CsvExporters
+  class <%= exporter_classname %>
+
+    HEADERS = %w(
+      <%= headers %>
+    )
+<%= permitted_opts %>
+<%= initializer %>
+<%= filename %>
+    def export_stream
+      Shutil::Csv::CsvBuilder.csv_enumerator(headers: HEADERS.map(&:titleize), data: <%= exporter_id %>_data)
+    end
+
+    def <%= exporter_id %>_data
+      # Define a lazy enumerator on your data source, ex:
+      #
+      # use postgresql_cursor to enumerate over SomeModel
+      # SomeModel.all.each_row().lazy.map do |row|
+      #   row.values_at(*HEADERS)
+      # end
+    end
+  end
+end

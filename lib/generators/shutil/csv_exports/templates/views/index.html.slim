@@ -1,0 +1,16 @@
+= render 'layouts/shopify_app_js', title: "CSV Exports"
+
+= render 'layouts/ui_layout' do
+
+  .ui-major-section
+    h1.ui-major-section__header
+      | Exports
+    ul.nav.nav-tabs[role="tablist"]
+      li.nav-item
+        a.nav-link.active[data-toggle="tab" href="#export_example_section" role="tab"]
+          | Example export Type
+    .tab-content
+      section.ui-card.ui-card__tab-content.mt-0
+        .ui-card__section
+          = @csv_exports.each do |csv_export|
+            = link_to csv_export.title, csv_export_path(id: csv_export.id, format: :csv), class: "btn btn-outline-primary"
