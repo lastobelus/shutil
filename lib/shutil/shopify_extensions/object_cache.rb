@@ -38,8 +38,16 @@ module Shutil
         shop.with_shopify_session { self.class.shopify_class.find(id) }
       end
 
+      def new_shopify_instance
+        self.class.shopify_class.new(id: id)
+      end
+
       def self.shopify_class
         ShopifyAPI.const_get(self.name.gsub(/^Shopify/, ""))
+      end
+
+      def shopify_class
+        self.class.shopify_class
       end
 
       def process_update(shopify_obj)
@@ -98,8 +106,6 @@ module Shutil
       end
 
       def self.update_from_shopify_obj(shop, shopify_obj, parent_record = nil)
-        puts "update_from_shopify_obj"
-        ap shopify_obj
         parent_attrs = {}
         if parent_record
           parent_attrs["#{parent_record.model_name.singular}_id"] = parent_record.id
@@ -113,7 +119,7 @@ module Shutil
       end
 
       def self.shopify_fields_for_fetch
-        fields = attributes_from_shopify + [:id]
+        fields = attributes_from_shopify + ["id"]
         fields.concat(caches_children) if caches_children?
         fields
       end
@@ -121,8 +127,13 @@ module Shutil
       def self.update_all(shop)
         errors = []
         shopify_class.stream(shop: shop, params: {fields: shopify_fields_for_fetch}).each do |shopify_obj|
+          puts "shopify_obj:"
+          ap shopify_obj
           model = update_from_shopify_obj(shop, shopify_obj)
+          puts "model:"
+          ap model
           errors << model.errors unless model.errors.blank?
+          return
         end
         errors
       end

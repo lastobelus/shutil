@@ -1,7 +1,7 @@
-require 'csv_builder'
+require 'shutil/csv/csv_builder'
 
 module CsvExporters
-  class <%= exporter_classname %>
+  class <%= exporter_classname %> < Shutil::Csv::Exporters::Base
 
     HEADERS = %w(
       <%= headers %>
@@ -9,6 +9,7 @@ module CsvExporters
 <%= permitted_opts %>
 <%= initializer %>
 <%= filename %>
+<%= title %>
     def export_stream
       Shutil::Csv::CsvBuilder.csv_enumerator(headers: HEADERS.map(&:titleize), data: <%= exporter_id %>_data)
     end

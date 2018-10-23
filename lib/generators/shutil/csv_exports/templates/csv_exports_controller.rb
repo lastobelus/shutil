@@ -1,4 +1,5 @@
 class CsvExportsController < ApplicationController
+  include ShopifyApp::AuthenticatedByShopify
   # GET /csv_exports/name.csv
   def show
     respond_to do |format|
@@ -20,7 +21,7 @@ class CsvExportsController < ApplicationController
 
         stream_csv(
           filename: csv_filename(filename),
-          stream: exporter.export_stream(opts),
+          stream: exporter.export_stream,
         )
       end
     end

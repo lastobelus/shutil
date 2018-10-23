@@ -5,13 +5,15 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
   class_option :opts, type: "array", required: false, aliases: "-o"
 
   def exporter
-    template "exporter.rb", "app/models/csv_exporters/#{singular_name}.rb"
+    puts "file_name: #{file_name.inspect}"
+    puts "class_name: #{class_name.inspect}"
+    template "exporter.rb", "app/models/csv_exporters/#{file_name}.rb"
   end
 
   private
 
-  def exporter_classname
-    "#{class_name}Exporter"
+  def file_name
+    super.ends_with?("_exporter") ? super : "#{file_name}_exporter"
   end
 
   def exporter_id
@@ -68,6 +70,15 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
     %Q(
     # To override the default filename, implement this.
     # def filename
+    #   ...
+    # end
+    )
+  end
+
+  def title
+    %Q(
+    # To override the default title, implement this.
+    # def title
     #   ...
     # end
     )

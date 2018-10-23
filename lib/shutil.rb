@@ -8,6 +8,7 @@ module Shutil
 
   eager_autoload do
     autoload :Workers
+    autoload :Csv
     autoload :ShopifyExtensions
   end
 
