@@ -127,13 +127,8 @@ module Shutil
       def self.update_all(shop)
         errors = []
         shopify_class.stream(shop: shop, params: {fields: shopify_fields_for_fetch}).each do |shopify_obj|
-          puts "shopify_obj:"
-          ap shopify_obj
           model = update_from_shopify_obj(shop, shopify_obj)
-          puts "model:"
-          ap model
           errors << model.errors unless model.errors.blank?
-          return
         end
         errors
       end
