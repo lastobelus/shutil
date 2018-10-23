@@ -51,8 +51,6 @@ module Shutil
       end
 
       def process_update(shopify_obj)
-        puts "process_update attributes_cached: #{self.class.attributes_cached.inspect}"
-
         self.attributes = attributes_for_record(shopify_obj)
       end
 
