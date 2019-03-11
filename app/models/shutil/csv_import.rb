@@ -13,7 +13,7 @@ module Shutil
       if file
         self.filename = sanitize_filename(file.original_filename)
         self.content_type = file.content_type
-        spreadsheet = Roo::Spreadsheet.open(file, roo_opts)
+        spreadsheet = Roo::Excelx.open(file.tempfile, roo_opts)
         self.file_data = spreadsheet.to_csv
       end
     end

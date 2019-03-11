@@ -58,7 +58,6 @@ Gem::Specification.new do |s|
   ############################################################################
   s.add_dependency "smarter_csv"
   s.add_dependency "roo"
-  s.add_dependency "roo-xls"
 
   s.add_development_dependency "sqlite3"
 end
