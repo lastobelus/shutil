@@ -58,6 +58,10 @@ Gem::Specification.new do |s|
   ############################################################################
   s.add_dependency "smarter_csv"
   s.add_dependency "roo"
-
+  
+  ############################################################################
+  # Development
+  ############################################################################
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rspec-rails"
 end

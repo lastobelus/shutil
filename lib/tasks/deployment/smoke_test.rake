@@ -92,7 +92,11 @@ module Shutil
   end
 
   class Heroku
-    vattr_initialize [:app]
+    attr_reader :app
+
+    def initialize(app)
+      @app = app
+    end
 
     def debug
       ENV['DEBUG_SHUTIL']
