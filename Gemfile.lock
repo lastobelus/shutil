@@ -183,7 +183,7 @@ GEM
       sidekiq (>= 4.0.0)
     sidekiq-history (0.0.11)
       sidekiq (>= 3.0.0)
-    sidekiq-pro (4.0.4)
+    sidekiq-pro (4.0.5)
       concurrent-ruby (>= 1.0.5)
       sidekiq (>= 5.2.1)
     sidekiq-status (1.1.1)
@@ -224,4 +224,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.16.6
+   1.17.3
