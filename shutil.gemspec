@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 5.1"
+  s.add_dependency "rails", ">= 5.2"
 
   ############################################################################
   # Background Jobs
@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
   # Settings in json column
   s.add_dependency "jsonb_accessor"
   s.add_dependency "postgresql_cursor"
-  
+
   ############################################################################
   # Deployment
   ############################################################################
@@ -58,6 +58,7 @@ Gem::Specification.new do |s|
   ############################################################################
   s.add_dependency "smarter_csv"
   s.add_dependency "roo"
+  s.add_dependency "roo-google"
 
   s.add_development_dependency "sqlite3"
 end
