@@ -2,4 +2,22 @@
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": true,
   "files.autoSave": "onFocusChange",
+  "editor.renderLineHighlight": "all",
+  "ruby.lint": {
+    "reek": false,
+    "rubocop": true,
+    "ruby": true, //Runs ruby -wc
+    "fasterer": true
+  },
+  "[ruby]": {
+    "editor.suggest.filteredTypes": {
+      "keyword": false
+    }
+  },
+  "window.zoomLevel": -1.5,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveTimeout": 3000,
+  "editor.fontSize": 14,
+  "todo.file.name": "*.todo",
+  "cSpell.words": []
 }

@@ -1,0 +1,27 @@
+{
+    "version": "0.1",
+    "dictionaryDefinitions": [
+        {
+            "name": "simpli",
+            "path": "./dictionaries/simpli.txt"
+        },
+        {
+            "name": "rubyKeywords",
+            "path": "./dictionaries/rubyKeywords.txt"
+        }
+    ],
+    "dictionaries": [
+        "simpli"
+    ],
+    "languageSettings": [
+        {
+            "languageId": "ruby",
+            "dictionaries": [
+                "rubyKeywords"
+            ]
+        }
+    ],
+    "words": [
+        "fedex"
+    ]
+}
