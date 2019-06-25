@@ -1,3 +1,4 @@
+aftership
 bestrate
 commontable
 commontator
@@ -8,9 +9,11 @@ nalpac
 sameday
 shipstation
 shopify
+shutil
 simpli
 simplipleasure
 sku
+skus
 slc
 statii
 ticketer

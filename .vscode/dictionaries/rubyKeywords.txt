@@ -28,5 +28,6 @@ tempfile
 unscoped
 upcase
 upsert
+upserted
 vattr_initialize
 webpacker
