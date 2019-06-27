@@ -5,8 +5,8 @@ class CsvExportsController < ApplicationController
     respond_to do |format|
       format.csv do
         begin
-          klass = "CsvExporters::#{params[:id].camelize}".constantize
-        rescue
+          klass = exporter_klass(params[:id])
+        rescue NameError
           raise "no csv export for #{params[:id]}"
         end
 
@@ -32,6 +32,12 @@ class CsvExportsController < ApplicationController
   end
 
   private
+
+  def exporter_klass(id)
+    name = id.camelize
+    name = "#{name}Exporter" unless name.ends_with?("Exporter")
+    "CsvExporters::#{name}".constantize
+  end
 
   def stream_resource(stream)
     headers["X-Accel-Buffering"] = "no"
