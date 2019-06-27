@@ -1,7 +1,7 @@
 require 'shutil/csv/csv_builder'
 
 module CsvExporters
-  class <%= classname %> < Shutil::Csv::Exporters::Base
+  class <%= class_name %> < Shutil::Csv::Exporters::Base
 
     HEADERS = %w(
       <%= headers %>
