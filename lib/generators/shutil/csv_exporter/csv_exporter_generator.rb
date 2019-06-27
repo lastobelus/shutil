@@ -13,7 +13,7 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
   private
 
   def file_name
-    super.ends_with?("_exporter") ? super : "#{file_name}_exporter"
+    super.ends_with?("_exporter") ? super : "#{super}_exporter"
   end
 
   def exporter_id
