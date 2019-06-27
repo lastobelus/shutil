@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shutil (0.1.5)
+    shutil (0.1.6)
       attr_extras
       barnes
       figaro

@@ -3,21 +3,28 @@ class CsvExportsController < ApplicationController
   # GET /csv_exports/name.csv
   def show
     respond_to do |format|
+      id = params[:id]
       format.csv do
         begin
-          klass = exporter_klass(params[:id])
+          klass = exporter_klass(id)
         rescue NameError
-          raise "no csv export for #{params[:id]}"
+          raise "no csv export for #{id}"
         end
 
-        if klass.opts?
-          opts = params.require(params[:id].to_sym).permit(klass.permitted_opts)
-          exporter = klass.new(opts)
-        else
-          exporter = klass.new
-        end
+        exporter = if klass.opts?
+                     opts = { shop: current_shop }
+                     if params[id.to_sym]
+                       opts = opts.merge(
+                         params.require(id.to_sym)
+                           .permit(klass.permitted_opts)
+                       )
+                     end
+                     klass.new(opts)
+                   else
+                     klass.new
+                   end
 
-        filename = exporter.respond_to?(:filename) ? exporter.filename : "#{params[:id]}-export"
+        filename = exporter.respond_to?(:filename) ? exporter.filename : "#{id}-export"
 
         stream_csv(
           filename: csv_filename(filename),
