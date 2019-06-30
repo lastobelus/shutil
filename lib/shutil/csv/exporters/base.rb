@@ -13,7 +13,7 @@ module Shutil
         end
 
         def self.title
-          name.demodulize.titleize.gsub(" Exporter", "")
+          filename.titleize
         end
 
         def title
