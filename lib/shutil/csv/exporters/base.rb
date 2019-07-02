@@ -35,6 +35,14 @@ module Shutil
         def total(x)
           status&.total(x)
         end
+
+        def set_status_total
+          total(count)
+        end
+
+        def count
+          raise "you must implement #{self.class.name}#count"
+        end
       end
     end
   end
