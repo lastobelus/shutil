@@ -2,7 +2,7 @@ module Shutil
   module Csv
     module Exporters
       class Base
-        attr_accessor :status
+        attr_accessor :status, :num_records
 
         def self.filename
           name.demodulize.underscore.dasherize.gsub("-exporter", "")
@@ -37,7 +37,8 @@ module Shutil
         end
 
         def set_status_total
-          total(count)
+          @num_records = count
+          total(@num_records)
         end
 
         def count
