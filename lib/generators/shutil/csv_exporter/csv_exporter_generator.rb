@@ -4,6 +4,8 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
   class_option :headers, type: "array", required: true, aliases: "-h"
   class_option :opts, type: "array", required: false, aliases: "-o"
 
+  attr_reader :opts
+
   def exporter
     puts "file_name: #{file_name.inspect}"
     puts "class_name: #{class_name.inspect}"
@@ -24,11 +26,6 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
     options["headers"].map { |h| h.gsub(/[,;"']/, "").strip }.join("\n      ")
   end
 
-  def opts
-    opts_with_shop = ["shop"]
-    opts_with_shop.concat(options["opts"]) unless options["opts"].blank?
-  end
-
   def opt_name(opt)
     opt.strip.underscore.downcase
   end
@@ -42,7 +39,10 @@ class Shutil::CsvExporterGenerator < Rails::Generators::NamedBase
   end
 
   def initializer
-    opts_defaults = opts.select { |o| o.include?("=") }.map { |o| o.split(/ *= */) }.map { |o| [opt_name(o.first), o.second].join(" = ") }
+    @opts = ["shop"]
+    @opts = @opts.concat(options["opts"]) unless options["opts"].blank?
+
+    opts_defaults = @opts.select { |o| o.include?("=") }.map { |o| o.split(/ *= */) }.map { |o| [opt_name(o.first), o.second].join(" = ") }
 
     %Q(
     aattr_initialize [#{opts_names.map { |o| ":#{o}" }.join(", ")}] do
