@@ -31,3 +31,6 @@ upsert
 upserted
 vattr_initialize
 webpacker
+demodulize
+titleize
+dasherize

@@ -10,11 +10,8 @@ module CsvExporters
 <%= initializer %>
 <%= filename %>
 <%= title %>
-    def export_stream
-      Shutil::Csv::CsvBuilder.csv_enumerator(headers: HEADERS.map(&:titleize), data: <%= exporter_id %>_data)
-    end
 
-    def <%= exporter_id %>_data
+    def data
       # Define a lazy enumerator on your data source, ex:
       #
       # use postgresql_cursor to enumerate over SomeModel
