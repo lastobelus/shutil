@@ -49,8 +49,12 @@ module Shutil
           raise "you must implement #{self.class.name}#data"
         end
 
+        def data
+          raise "you must implement #{self.class.name}#headers"
+        end
+
         def export_stream
-          Shutil::Csv::CsvBuilder.csv_enumerator(headers: HEADERS, data: data)
+          Shutil::Csv::CsvBuilder.csv_enumerator(headers: headers, data: data)
         end
       end
     end
